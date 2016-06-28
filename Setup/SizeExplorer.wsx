@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Name='Size Explorer' Id='$(var.Id)' UpgradeCode='BE4E9B64-AC3B-4A25-8AAA-179EAF00EE38' Language='1033' Codepage='1252' Version='$(var.Version)' Manufacturer='Thargelion AB'>
+
+    <Package InstallerVersion="300" Compressed="yes"/>
+
+    <UI Id="WixUI_SkipLicenseAgreement">
+      <UIRef Id="WixUI_InstallDir" />
+
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg" Order="3">1</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="3">1</Publish>
+
+      <Property Id="WIXUI_INSTALLDIR" Value="APPLICATIONROOTDIRECTORY" />
+    </UI>
+
+    <Upgrade Id="BE4E9B64-AC3B-4A25-8AAA-179EAF00EE38">
+      <UpgradeVersion Minimum="0.9.0" IncludeMinimum="yes" OnlyDetect="no" Maximum='$(var.Version)' IncludeMaximum="no" Property="PREVIOUSFOUND" />
+    </Upgrade>
+
+    <Media Id="1" Cabinet="SizeExplorer.cab" EmbedCab="yes" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="CompanyDir" Name="Thargelion">
+          <Directory Id="APPLICATIONROOTDIRECTORY" Name="Size Explorer" />
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY" FileSource='..\SizeExplorer\bin\$(var.Environment)'>
+      <Directory Id="DesktopFolder" Name="Desktop"></Directory>
+      <Component Id="Application" Guid="011E4067-8813-4223-AF15-B3F97C460E03">
+        <File Name="SizeExplorer.exe" KeyPath="yes" />
+        <File Name="SizeExplorer.exe.config" />
+      </Component>
+    </DirectoryRef>
+
+    <Feature Id="Core" Title="Core" Level="1" Absent="disallow" Display="expand">
+      <ComponentRef Id="Application"/>
+      <ComponentRef Id="ApplicationShortcut" />
+      <ComponentRef Id="ApplicationShortcutDesktop" />
+    </Feature>
+
+    <InstallExecuteSequence>
+      <RemoveExistingProducts Before="InstallInitialize" />
+    </InstallExecuteSequence>
+
+  </Product>
+
+  <Fragment>
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      <Component Id="ApplicationShortcut" Guid="379B14C9-3A4F-4FB4-B516-A25E687C5A10">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="Size Explorer" Description="Size Explorer" Target="[APPLICATIONROOTDIRECTORY]SizeExplorer.exe" WorkingDirectory="APPLICATIONROOTDIRECTORY" />
+        <RemoveFolder Id="RemoveApplicationProgramsFolder" Directory="APPLICATIONROOTDIRECTORY" On="uninstall" />
+        <RegistryValue Root="HKLM" Key="Software\Thargelion\Size Explorer" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="ApplicationShortcutDesktop" Guid="FD2C9CFA-2F89-424A-88DA-CFF1EE2FE1E0">
+        <Shortcut Id="ApplicationDesktopShortcut" Name="Size Explorer" Description="Size Explorer" Target="[APPLICATIONROOTDIRECTORY]SizeExplorer.exe" WorkingDirectory="APPLICATIONROOTDIRECTORY" />
+        <RemoveFolder Id="RemoveDesktopFolder" Directory="DesktopFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Thargelion\Size Explorer" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+</Wix>
