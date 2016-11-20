@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>SizeExplorer</id>
+    <version>1.0.0</version>
+    <packageSourceUrl>https://github.com/poxet/sizeexplorer</packageSourceUrl>
+    <owners>poxet</owners>
+    <title>Size Explorer (Install)</title>
+    <authors>Daniel Bohlin</authors>
+    <projectUrl>https://github.com/poxet/sizeexplorer</projectUrl>
+    <iconUrl>http://thargelion.se/Images/Logotype/Thargelion-White-Icon-48.png</iconUrl>
+    <copyright>Copyright (c) 2016 Thargelion AB</copyright>
+    <licenseUrl>https://github.com/poxet/sizeexplorer/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/poxet/sizeexplorer</projectSourceUrl>
+    <docsUrl>https://github.com/poxet/sizeexplorer/blob/master/README.md</docsUrl>
+    <bugTrackerUrl>https://github.com/poxet/sizeexplorer/issues</bugTrackerUrl>
+    <tags>sizeexplorer admin disk space size</tags>
+    <summary>Size Explorer is a simple tool to find what folders and files takes up the most space on your machine.</summary>
+    <description>Run Size Explorer on a machine where you want to free up space. It shows you what folders consumes the most space.</description>
+    <releaseNotes></releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
