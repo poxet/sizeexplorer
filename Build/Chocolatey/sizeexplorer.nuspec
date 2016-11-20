@@ -18,7 +18,7 @@
     <tags>sizeexplorer admin disk space size</tags>
     <summary>Size Explorer is a simple tool to find what folders and files takes up the most space on your machine.</summary>
     <description>Run Size Explorer on a machine where you want to free up space. It shows you what folders consumes the most space.</description>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>Initial version</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
